@@ -16,15 +16,20 @@ This project deploys a serverless data ingestion pipeline in Google Cloud Platfo
 
 ### 1. Prerequisites
 
+- Sign up with GCP by creating a new trial account
+- Log into the [GCP console](https://cloud.google.com), manually create an empty project and take note of the *Project ID*.
 - Install [Terraform](https://www.terraform.io/downloads)
 - Install [gcloud CLI](https://cloud.google.com/sdk/docs/install)
-- Enable required APIs:
+- Enable required APIs in the gcloud CLI:
 
   ```bash
   gcloud services enable cloudfunctions.googleapis.com \
+    artifactregistry.googleapis.com \
     cloudscheduler.googleapis.com \
     storage.googleapis.com
   ```
+
+- Navigate to [API Control for you project](https://console.developers.google.com/apis/api/cloudbuild.googleapis.com) and enable the *Cloudbuild* service.
 
 - Authenticate:
 
