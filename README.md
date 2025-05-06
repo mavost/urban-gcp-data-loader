@@ -52,7 +52,7 @@ make tf-init
 make tf-apply PROJECT_ID=your-project-id BUCKET_NAME=your-data-bucket
 ```
 
-### 4. Test the Function
+### 4. Test the Function on GCP
 
 Once deployed, get the function URL from Terraform outputs:
 
@@ -60,6 +60,29 @@ Once deployed, get the function URL from Terraform outputs:
 terraform output function_url
 curl [FUNCTION_URL]
 ```
+
+### 5. Test the Function locally
+
+- Create a local python environment using the `requirements.txt` file:
+
+  ```bash
+  python3 -m venv .venv-test
+  source .venv-test/bin/activate
+  pip install -r cloud_function/requirements.txt
+  ```
+
+- Run the framework
+
+  ```bash
+  cd cloud_function
+  functions-framework --target=ingest_api_data --port=8088
+  ```
+
+- Trigger the function
+
+  ```bash
+  curl http://localhost:8088/
+  ```
 
 ### ✅ Success
 
