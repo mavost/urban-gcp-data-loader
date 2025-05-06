@@ -2,7 +2,7 @@ resource "google_cloudfunctions_function" "ingest_function" {
   name        = "data-ingestion-function"
   description = "Fetch data from API and store in GCS"
   runtime     = "python310"
-  entry_point = "main"
+  entry_point = "ingest_api_data"
   region      = var.region
 
   source_archive_bucket = var.source_bucket
@@ -13,6 +13,7 @@ resource "google_cloudfunctions_function" "ingest_function" {
 
   environment_variables = {
     BUCKET_NAME = var.bucket_name
+    BASE_URL    = var.base_url
   }
 }
 

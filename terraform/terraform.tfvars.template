@@ -1,0 +1,4 @@
+project_id  = "my_project_id"
+region      = "us-central1"
+bucket_name = "my-data"
+base_url    = "https://example.com"

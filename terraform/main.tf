@@ -19,6 +19,7 @@ module "cloud_function" {
 
   region        = var.region
   bucket_name   = var.bucket_name
+  base_url      = var.base_url
   bucket_object = google_storage_bucket_object.function_source.name
   source_bucket = google_storage_bucket.data_bucket.name
 }
