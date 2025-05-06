@@ -54,11 +54,16 @@ make tf-apply PROJECT_ID=your-project-id BUCKET_NAME=your-data-bucket
 
 ### 4. Test the Function on GCP
 
-Once deployed, get the function URL from Terraform outputs:
+Once deployed, get the function URL from Terraform outputs and trigger the endpoint:
 
 ```bash
 terraform output function_url
-curl [FUNCTION_URL]
+curl -m 70 -X POST [FUNCTION_URL]] \
+-H "Authorization: bearer $(gcloud auth print-identity-token)" \
+-H "Content-Type: application/json" \
+-d '{
+    "message": "Testing"
+}'
 ```
 
 ### 5. Test the Function locally
