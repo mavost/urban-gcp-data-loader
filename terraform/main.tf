@@ -9,6 +9,7 @@ resource "google_storage_bucket" "data_bucket" {
 }
 
 resource "google_storage_bucket_object" "function_source" {
+  # ToDo: needs to include SHA dependency of zip payload
   name   = "function-source.zip"
   bucket = google_storage_bucket.data_bucket.name
   source = "../cloud_function/function-source.zip"
@@ -24,6 +25,7 @@ module "cloud_function" {
   source_bucket = google_storage_bucket.data_bucket.name
 }
 
+# ToDo: needs permissions to call http cloud run function
 resource "google_cloud_scheduler_job" "daily_trigger" {
   name             = "trigger-data-ingestion"
   schedule         = "0 2 * * *"  # 2 AM UTC daily
